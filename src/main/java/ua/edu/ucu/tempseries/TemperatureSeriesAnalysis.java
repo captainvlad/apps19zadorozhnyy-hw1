@@ -6,20 +6,24 @@ public class TemperatureSeriesAnalysis{
     boolean empty;
     int critical;
 
-    public TemperatureSeriesAnalysis(){empty = true;}
+    public TemperatureSeriesAnalysis(){
+        empty = true;
+    }
 
     public TemperatureSeriesAnalysis(double[] temperatureSeries){
         critical = -273;
         empty = false;
         checkSmallest(temperatureSeries);
         this.temp = temperatureSeries;
-        this.currentSize = temperatureSeries.length;}
+        this.currentSize = temperatureSeries.length;
+    }
 
     public void checkSmallest(double[] arg){
         for (int i = 0; i < arg.length; i++){
             if (arg[i] < critical){
                 throw new InputMismatchException("You "
-                        + "can't put less than -273 in array!");}
+                        + "can't put less than -273 in array!");
+            }
         }
     }
 
@@ -27,12 +31,15 @@ public class TemperatureSeriesAnalysis{
         for (int i = 0; i < arg.length; i++){
             if (arg[i] < critical){
                 throw new InputMismatchException("You"
-                        + " can't put less than -273 in array!");}
+                        + " can't put less than -273 in array!");
+            }
         }
     }
 
     public void check(){
-        if (empty){throw new IllegalArgumentException("Array is empty!");}
+        if (empty){
+            throw new IllegalArgumentException("Array is empty!");
+        }
     }
 
     public double average(){
