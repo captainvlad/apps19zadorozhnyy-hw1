@@ -1,158 +1,104 @@
+import org.junit.Test;
+
 import java.util.InputMismatchException;
 
-public class TemperatureSeriesAnalysis {
-    public double[] temp;
-    int current_size;
-    public boolean empty = false;
+import static org.junit.Assert.*;
 
-    public TemperatureSeriesAnalysis() {
-        empty = true;
+public class TemperatureSeriesAnalysisTest {
+    double[] array = {1,2,3,4};
+
+    double[] arr = {1,2,3,4};
+    double[] arr_2 = {};
+
+    TemperatureSeriesAnalysis ars = new TemperatureSeriesAnalysis(array);
+    TemperatureSeriesAnalysis ars_1 = new TemperatureSeriesAnalysis();
+
+    @Test(expected = InputMismatchException.class)
+    public void check_smallest() {
+        double[] wrong_array = {-274, 5};
+        ars.checkSmallest(wrong_array);
     }
 
-    public void check_smallest(double[] arg){
-        for (int i = 0; i < arg.length; i++) {
-            if (arg[i] < -273)
-                throw new InputMismatchException("You can't put less than -273 in array!");
-        }
+    @Test(expected = InputMismatchException.class)
+    public void check_smallest_added() {
+        ars.addTemps(-275);
+        ars.addTemps(25);
     }
 
-    public void check_smallest_added(double... arg){
-        for (int i = 0; i < arg.length; i++) {
-            if (arg[i] < -273)
-                throw new InputMismatchException("You can't put less than -273 in array!");
-        }
+    @Test(expected = IllegalArgumentException.class)
+    public void check() {
+        ars.check();
+        ars_1.check();
     }
 
-    public TemperatureSeriesAnalysis(double[] temperatureSeries) {
-        check_smallest(temperatureSeries);
-        this.temp = temperatureSeries;
-        this.current_size = temperatureSeries.length;
+    @Test(expected = IllegalArgumentException.class)
+    public void average() {
+        ars.average();
+        ars_1.average();
+        assertEquals(ars.average(), 2.5, 0);
     }
 
-    public void check(){
-        if (empty == true){
-            throw new IllegalArgumentException("Array is empty!");
-        }
+    @Test(expected = IllegalArgumentException.class)
+    public void deviation() {
+        assertEquals(ars.deviation(), 1.1, 0.1);
+        ars_1.deviation();
     }
 
-    public double average() {
-        check();
-        float sum = 0f;
-        for (int i = 0; i < this.temp.length ; i++) {
-            sum += this.temp[i];
-        }
-        return sum / this.temp.length;
+    @Test(expected = IllegalArgumentException.class)
+    public void min() {
+        assertEquals(ars.min(), 1, 0);
+        ars_1.min();
     }
 
-    public double deviation() {
-        check();
-        double averag = this.average();
-        double sum = 0;
-        for (int i = 0; i < temp.length ; i++) {
-            sum += Math.pow((temp[i] - averag), 2);
-        }
-        return Math.sqrt(sum / temp.length);
+    @Test(expected = IllegalArgumentException.class)
+    public void max() {
+        assertEquals(ars.max(), 4, 0);
+        ars_1.max();
     }
 
-    public double min() {
-        check();
-        double current_min = temp[0];
-        for (int i = 1; i < temp.length; i++) {
-            current_min = temp[i] < current_min ? temp[i]: current_min;
-        }
-        return current_min;
+    @Test(expected = IllegalArgumentException.class)
+    public void findTempClosestToValue() {
+        assertEquals(ars.findTempClosestToValue(2), 2, 0);
+        ars_1.findTempClosestToValue(2);
     }
 
-    public double max() {
-        check();
-        double current_max = temp[0];
-        for (int i = 1; i < temp.length; i++) {
-            current_max = temp[i] > current_max ? temp[i]: current_max;
-        }
-        return current_max;
+    @Test(expected = IllegalArgumentException.class)
+    public void findTempClosestToZero() {
+        assertEquals(ars.findTempClosestToZero(), 1, 0);
+        ars_1.findTempClosestToZero();
     }
 
-    public double findTempClosestToValue(double tempValue) {
-        check();
-        double current_difference = Math.abs(tempValue - Math.abs(temp[0]));
-        double current_element = temp[0];
-        for (int i = 0; i < temp.length; i++) {
-            if(Math.abs(tempValue - Math.abs(temp[i])) < current_difference){
-                current_difference = Math.abs(tempValue - Math.abs(temp[i]));
-                current_element = temp[i];
-            }
-            else if(Math.abs(tempValue - Math.abs(temp[i])) == current_difference){
-                current_element = current_element < temp[i] ? temp[i] : current_element;
-            }
-        }
-        return current_element;
+    @Test(expected = IllegalArgumentException.class)
+    public void findTempsLessThen() {
+        assertArrayEquals(ars.findTempsLessThen(10), arr, 0);
+        assertArrayEquals(ars.findTempsLessThen(0), arr_2, 0);
+        ars_1.findTempsLessThen(10);
     }
 
-    public double findTempClosestToZero() {
-        if (empty == true) {
-            throw new IllegalArgumentException("Array is empty");
-        }
-        return this.findTempClosestToValue(0);
+    @Test(expected = IllegalArgumentException.class)
+    public void findTempsGreaterThen() {
+        assertArrayEquals(ars.findTempsGreaterThen(10), arr_2, 0);
+        assertArrayEquals(ars.findTempsGreaterThen(0), arr, 0);
+        ars_1.findTempsGreaterThen(0);
+
     }
 
-    public double[] findTempsLessThen(double tempValue) {
-        check();
-        int k = 0;
-        for (int i = 0; i < temp.length; i++) {
-            if (temp[i] < tempValue)
-                k ++;
-        }
-        double[] result = new double[k];
-        int f = 0;
-        for (int i = 0; i < temp.length; i++) {
-            if (temp[i] < tempValue){
-                result[f] = temp[i];
-                f++;
-            }
-        }
-        return result;
+    @Test(expected = IllegalArgumentException.class)
+    public void summaryStatistics() {
+        TempSummaryStatistics a = ars.summaryStatistics();
+        assertEquals(a.getAvgTemp(), 2.5, 0);
+        assertEquals(a.getDevTemp(), 1.1, 0.1);
+        assertEquals(a.getMaxTemp(), 4, 0);
+        assertEquals(a.getMinTemp(), 1, 0);
+        TempSummaryStatistics b = ars_1.summaryStatistics();
     }
 
-    public double[] findTempsGreaterThen(double tempValue) {
-        check();
-        int k = 0;
-        for (int i = 0; i < temp.length; i++) {
-            if (temp[i] >= tempValue)
-                k ++;
-        }
-        double[] result = new double[k];
-        int f = 0;
-        for (int i = 0; i < temp.length; i++) {
-            if (temp[i] >= tempValue){
-                result[f] = temp[i];
-                f++;
-            }
-        }
-        return result;
-    }
+    @Test
+    public void addTemps() {
+        assertEquals(ars.addTemps(2), 5, 0);
+        assertEquals(ars.temp.length, 8, 0);
+        assertEquals(ars.addTemps(2), 6, 0);
+        assertEquals(ars.temp.length, 8, 0);
 
-    public TempSummaryStatistics summaryStatistics() {
-        check();
-        final TempSummaryStatistics result = new TempSummaryStatistics();
-        result.setAvgTemp(average());
-        result.setDevTemp(deviation());
-        result.setMaxTemp(max());
-        result.setMinTemp(min());
-        return result;
-    }
-
-    public int addTemps(double... temps) {
-        this.temp = this.temp.length == 0? new double[1]: this.temp;
-        check_smallest_added(temps);
-        double[] result = (temp.length < current_size + temps.length) ? new double[2 * temp.length]: temp;
-        for (int i = 0; i < temp.length; i++) {
-            result[i] = temp[i];
-        }
-        for (int i = 0; i < temps.length; i++) {
-            result[i + current_size] = temps[i];
-            current_size ++;
-        }
-        this.temp = result;
-        return current_size;
     }
 }

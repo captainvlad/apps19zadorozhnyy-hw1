@@ -16,7 +16,7 @@ public class TemperatureSeriesAnalysisTest {
     @Test(expected = InputMismatchException.class)
     public void check_smallest() {
         double[] wrong_array = {-274, 5};
-        ars.check_smallest(wrong_array);
+        ars.checkSmallest(wrong_array);
     }
 
     @Test(expected = InputMismatchException.class)
@@ -72,7 +72,7 @@ public class TemperatureSeriesAnalysisTest {
     public void findTempsLessThen() {
         assertArrayEquals(ars.findTempsLessThen(10), arr, 0);
         assertArrayEquals(ars.findTempsLessThen(0), arr_2, 0);
-       ars_1.findTempsLessThen(10);
+        ars_1.findTempsLessThen(10);
     }
 
     @Test(expected = IllegalArgumentException.class)
