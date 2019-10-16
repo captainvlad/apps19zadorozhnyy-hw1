@@ -88,11 +88,11 @@ public class TemperatureSeriesAnalysis {
         double currentDifference = Math.abs(tempValue - Math.abs(temp[0]));
         double currentElement = temp[0];
         for (int i = 0; i < temp.length; i++) {
-            if(Math.abs(tempValue - Math.abs(temp[i])) < currentDifference) {
+            if (Math.abs(tempValue - Math.abs(temp[i])) < currentDifference) {
                 currentDifference = Math.abs(tempValue - Math.abs(temp[i]));
                 currentElement = temp[i];
             }
-            else if(Math.abs(tempValue - Math.abs(temp[i]))
+            else if (Math.abs(tempValue - Math.abs(temp[i]))
                     == currentDifference) {
                 if (currentElement < temp[i]) {
                     currentElement = temp[i];
