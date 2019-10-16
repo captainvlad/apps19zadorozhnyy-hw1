@@ -93,10 +93,8 @@ public class TemperatureSeriesAnalysis {
                 currentElement = temp[i];
             }
             else if (Math.abs(tempValue - Math.abs(temp[i]))
-                    == currentDifference) {
-                if (currentElement < temp[i]) {
+                    == currentDifference && currentElement < temp[i]) {
                     currentElement = temp[i];
-                }
             }
         }
         return currentElement;
