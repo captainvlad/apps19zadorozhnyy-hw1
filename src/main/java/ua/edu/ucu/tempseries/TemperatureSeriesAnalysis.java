@@ -21,8 +21,8 @@ public class TemperatureSeriesAnalysis{
     public void checkSmallest(double[] arg){
         for (int i = 0; i < arg.length; i++){
             if (arg[i] < critical){
-                throw new InputMismatchException ("You " +
-                        "can't put less than -273 in array!");
+                throw new InputMismatchException("You "
+                        + "can't put less than -273 in array!");
             }
         }
     }
@@ -30,8 +30,8 @@ public class TemperatureSeriesAnalysis{
     public void checkSmallestAdded(double... arg){
         for (int i = 0; i < arg.length; i++){
             if (arg[i] < critical){
-                throw new InputMismatchException("You" +
-                        " can't put less than -273 in array!");
+                throw new InputMismatchException("You"
+                        + " can't put less than -273 in array!");
             }
         }
     }
