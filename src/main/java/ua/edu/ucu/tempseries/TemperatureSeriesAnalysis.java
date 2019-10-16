@@ -19,7 +19,7 @@ public class TemperatureSeriesAnalysis{
     }
 
     public void checkSmallest(double[] arg){
-        for (int i = 0 ; i < arg.length; i++){
+        for (int i = 0; i < arg.length; i++){
             if (arg[i] < critical){
                 throw new InputMismatchException ("You " +
                         "can't put less than -273 in array!");
@@ -28,7 +28,7 @@ public class TemperatureSeriesAnalysis{
     }
 
     public void checkSmallestAdded(double... arg){
-        for (int i = 0 ; i < arg.length; i++){
+        for (int i = 0; i < arg.length; i++){
             if (arg[i] < critical){
                 throw new InputMismatchException("You" +
                         " can't put less than -273 in array!");
@@ -45,7 +45,7 @@ public class TemperatureSeriesAnalysis{
     public double average(){
         check();
         float sum = 0f;
-        for (int i = 0 ; i < this.temp.length ; i++){
+        for (int i = 0; i < this.temp.length; i++){
             sum += this.temp[i];
         }
         return sum / this.temp.length;
@@ -54,8 +54,8 @@ public class TemperatureSeriesAnalysis{
     public double deviation(){
         check();
         double averag = this.average();
-        double sum = 0 ;
-        for (int i = 0 ; i < temp.length ; i++){
+        double sum = 0;
+        for (int i = 0; i < temp.length; i++){
             sum += ((temp[i] - averag) * (temp[i] - averag));
         }
         return Math.sqrt(sum / temp.length);
@@ -87,7 +87,7 @@ public class TemperatureSeriesAnalysis{
         check();
         double currentDifference = Math.abs(tempValue - Math.abs(temp[0]));
         double currentElement = temp[0];
-        for (int i = 0 ; i < temp.length; i++){
+        for (int i = 0; i < temp.length; i++){
             if(Math.abs(tempValue - Math.abs(temp[i])) < currentDifference){
                 currentDifference = Math.abs(tempValue - Math.abs(temp[i]));
                 currentElement = temp[i];
@@ -111,18 +111,18 @@ public class TemperatureSeriesAnalysis{
 
     public double[] findTempsLessThen(double tempValue){
         check();
-        int k = 0 ;
-        for (int i = 0 ; i < temp.length; i++){
+        int k = 0;
+        for (int i = 0; i < temp.length; i++){
             if (temp[i] < tempValue){
-                k++ ;
+                k++;
             }
         }
         double[] result = new double[k];
-        int f = 0 ;
-        for (int i = 0 ; i < temp.length; i++){
+        int f = 0;
+        for (int i = 0; i < temp.length; i++){
             if (temp[i] < tempValue){
                 result[f] = temp[i];
-                f++ ;
+                f++;
             }
         }
         return result;
@@ -130,18 +130,18 @@ public class TemperatureSeriesAnalysis{
 
     public double[] findTempsGreaterThen(double tempValue){
         check();
-        int k = 0 ;
-        for (int i = 0 ; i < temp.length; i++){
+        int k = 0;
+        for (int i = 0; i < temp.length; i++){
             if (temp[i] >= tempValue){
-                k++ ;
+                k++;
             }
         }
         double[] result = new double[k];
-        int f = 0 ;
-        for (int i = 0 ; i < temp.length; i++){
+        int f = 0;
+        for (int i = 0; i < temp.length; i++){
             if (temp[i] >= tempValue){
                 result[f] = temp[i];
-                f++ ;
+                f++;
             }
         }
         return result;
@@ -169,12 +169,12 @@ public class TemperatureSeriesAnalysis{
         else{
             result = temp;
         }
-        for (int i = 0 ; i < temp.length; i++){
+        for (int i = 0; i < temp.length; i++){
             result[i] = temp[i];
         }
-        for (int i = 0 ; i < temps.length; i++){
+        for (int i = 0; i < temps.length; i++){
             result[i + currentSize] = temps[i];
-            currentSize++ ;
+            currentSize++;
         }
         this.temp = result;
         return currentSize;
