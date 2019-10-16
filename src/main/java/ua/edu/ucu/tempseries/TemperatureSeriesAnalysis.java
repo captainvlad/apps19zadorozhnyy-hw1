@@ -81,8 +81,9 @@ public class TemperatureSeriesAnalysis {
                 current_difference = Math.abs(tempValue - Math.abs(temp[i]));
                 current_element = temp[i];
             }
-            else if(Math.abs(tempValue - Math.abs(temp[i])) == current_difference)
+            else if(Math.abs(tempValue - Math.abs(temp[i])) == current_difference){
                 current_element = current_element < temp[i] ? temp[i] : current_element;
+            }
         }
         return current_element;
     }
@@ -130,15 +131,15 @@ public class TemperatureSeriesAnalysis {
         return result;
     }
 
-//    public TempSummaryStatistics summaryStatistics() {
-//        check();
-//        final TempSummaryStatistics result = new TempSummaryStatistics();
-//        result.setAvgTemp(average());
-//        result.setDevTemp(deviation());
-//        result.setMaxTemp(max());
-//        result.setMinTemp(min());
-//        return result;
-//    }
+    public TempSummaryStatistics summaryStatistics() {
+        check();
+        final TempSummaryStatistics result = new TempSummaryStatistics();
+        result.setAvgTemp(average());
+        result.setDevTemp(deviation());
+        result.setMaxTemp(max());
+        result.setMinTemp(min());
+        return result;
+    }
 
     public int addTemps(double... temps) {
         this.temp = this.temp.length == 0? new double[1]: this.temp;
