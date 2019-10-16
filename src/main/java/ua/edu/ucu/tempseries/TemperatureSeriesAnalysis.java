@@ -1,9 +1,9 @@
 import java.util.InputMismatchException;
 
 public class TemperatureSeriesAnalysis{
-    public double[] temp;
+    double[] temp;
     int currentSize;
-    public boolean empty;
+    boolean empty;
     int critical;
 
     public TemperatureSeriesAnalysis(){
