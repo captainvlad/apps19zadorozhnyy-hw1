@@ -56,7 +56,7 @@ public class TemperatureSeriesAnalysis {
         double averag = this.average();
         double sum = 0;
         for (int i = 0; i < temp.length; i++) {
-            sum += ((temp[i] - averag) * (temp[i] - averag));
+            sum += (temp[i] - averag) * (temp[i] - averag);
         }
         return Math.sqrt(sum / temp.length);
     }
