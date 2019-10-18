@@ -4,14 +4,14 @@ public class TemperatureSeriesAnalysis {
     double[] temp;
     int currentSize;
     boolean empty;
-    final double critical;
+    int critical;
 
     public TemperatureSeriesAnalysis() {
         empty = true;
     }
 
     public TemperatureSeriesAnalysis(double[] temperatureSeries) {
-        critical = -273.0;
+        critical = -273;
         empty = false;
         checkSmallest(temperatureSeries);
         this.temp = temperatureSeries;
@@ -94,7 +94,7 @@ public class TemperatureSeriesAnalysis {
             }
             else if (Math.abs(tempValue - Math.abs(temp[i]))
                     == currentDifference && currentElement < temp[i]) {
-                    currentElement = temp[i];
+                currentElement = temp[i];
             }
         }
         return currentElement;
@@ -147,12 +147,12 @@ public class TemperatureSeriesAnalysis {
 
     public TempSummaryStatistics summaryStatistics() {
         check();
-        final TempSummaryStatistics RESULT = new TempSummaryStatistics();
-        RESULT.setAvgTemp(average());
-        RESULT.setDevTemp(deviation());
-        RESULT.setMaxTemp(max());
-        RESULT.setMinTemp(min());
-        return RESULT;
+        final TempSummaryStatistics Result = new TempSummaryStatistics();
+        Result.setAvgTemp(average());
+        Result.setDevTemp(deviation());
+        Result.setMaxTemp(max());
+        Result.setMinTemp(min());
+        return Result;
     }
 
     public int addTemps(double... temps) {
