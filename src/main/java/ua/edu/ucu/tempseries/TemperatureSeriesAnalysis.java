@@ -4,13 +4,14 @@ public class TemperatureSeriesAnalysis {
     double[] temp;
     int currentSize;
     boolean empty;
-    final double CRITICAL = -273.0;
+    final double critical;
 
     public TemperatureSeriesAnalysis() {
         empty = true;
     }
 
     public TemperatureSeriesAnalysis(double[] temperatureSeries) {
+        critical = -273.0;
         empty = false;
         checkSmallest(temperatureSeries);
         this.temp = temperatureSeries;
@@ -19,7 +20,7 @@ public class TemperatureSeriesAnalysis {
 
     public void checkSmallest(double[] arg) {
         for (int i = 0; i < arg.length; i++) {
-            if (arg[i] < CRITICAL) {
+            if (arg[i] < critical) {
                 throw new InputMismatchException("You "
                         + "can't put less than -273 in array!");
             }
@@ -28,7 +29,7 @@ public class TemperatureSeriesAnalysis {
 
     public void checkSmallestAdded(double... arg) {
         for (int i = 0; i < arg.length; i++) {
-            if (arg[i] < CRITICAL) {
+            if (arg[i] < critical) {
                 throw new InputMismatchException("You"
                         + " can't put less than -273 in array!");
             }
