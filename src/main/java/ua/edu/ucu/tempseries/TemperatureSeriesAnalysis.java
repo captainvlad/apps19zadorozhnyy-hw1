@@ -4,14 +4,13 @@ public class TemperatureSeriesAnalysis {
     double[] temp;
     int currentSize;
     boolean empty;
-    int critical;
+    final int CRITICAL = -273;
 
     public TemperatureSeriesAnalysis() {
         empty = true;
     }
 
     public TemperatureSeriesAnalysis(double[] temperatureSeries) {
-        critical = -273;
         empty = false;
         checkSmallest(temperatureSeries);
         this.temp = temperatureSeries;
@@ -20,7 +19,7 @@ public class TemperatureSeriesAnalysis {
 
     public void checkSmallest(double[] arg) {
         for (int i = 0; i < arg.length; i++) {
-            if (arg[i] < critical) {
+            if (arg[i] < CRITICAL) {
                 throw new InputMismatchException("You "
                         + "can't put less than -273 in array!");
             }
@@ -29,7 +28,7 @@ public class TemperatureSeriesAnalysis {
 
     public void checkSmallestAdded(double... arg) {
         for (int i = 0; i < arg.length; i++) {
-            if (arg[i] < critical) {
+            if (arg[i] < CRITICAL) {
                 throw new InputMismatchException("You"
                         + " can't put less than -273 in array!");
             }
@@ -147,12 +146,12 @@ public class TemperatureSeriesAnalysis {
 
     public TempSummaryStatistics summaryStatistics() {
         check();
-        final TempSummaryStatistics Result = new TempSummaryStatistics();
-        Result.setAvgTemp(average());
-        Result.setDevTemp(deviation());
-        Result.setMaxTemp(max());
-        Result.setMinTemp(min());
-        return Result;
+        final TempSummaryStatistics RESULT = new TempSummaryStatistics();
+        RESULT.setAvgTemp(average());
+        RESULT.setDevTemp(deviation());
+        RESULT.setMaxTemp(max());
+        RESULT.setMinTemp(min());
+        return RESULT;
     }
 
     public int addTemps(double... temps) {
