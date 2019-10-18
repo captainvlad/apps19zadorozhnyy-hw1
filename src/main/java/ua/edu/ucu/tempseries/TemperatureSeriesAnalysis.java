@@ -4,7 +4,7 @@ public class TemperatureSeriesAnalysis {
     double[] temp;
     int currentSize;
     boolean empty;
-    final int CRITICAL = -273;
+    final double CRITICAL = -273.0;
 
     public TemperatureSeriesAnalysis() {
         empty = true;
